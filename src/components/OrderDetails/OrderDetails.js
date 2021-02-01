@@ -16,12 +16,11 @@ function OrderDetails({ name }) {
   useEffect(() => {
     async function getData() {
       const cartResponse = await axios.get(
-        `http://localhost:8080/yellowrestaurant/api/v1/cart/mealsInCart/${name}`,
+        `http://localhost:8080/api/v1/cart/mealsInCart/${name}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      // console.log(cartResponse.data);
       setListOfMeals(cartResponse.data);
     }
     getData();
@@ -30,19 +29,17 @@ function OrderDetails({ name }) {
   useEffect(() => {
     async function getData() {
       const response = await axios.get(
-        `http://localhost:8080/yellowrestaurant/api/v1/user/view/${userName}`,
+        `http://localhost:8080/api/v1/user/view/${userName}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      // console.log(response.data);
       setUser(response.data);
     }
     getData();
   }, [token, userName]);
 
   const getListOfMeals = (mapWithMeals) => {
-    // console.log(mapWithMeals);
     let content = [];
     let meal = {};
     for (let [mealJSON, quantity] of Object.entries(mapWithMeals)) {
@@ -147,7 +144,6 @@ async function doPayment(params) {
     .post("http://localhost:8080/payment/request-payment", params)
     .then((response) => {
       if (response.status === 200) {
-        // console.log(response);
         window.location.href = response.data;
       }
     })

@@ -14,7 +14,7 @@ function ShoppingCart() {
   useEffect(() => {
     async function getData() {
       const cartResponse = await axios.get(
-        `http://localhost:8080/yellowrestaurant/api/v1/cart/view/${userName}`,
+        `http://localhost:8080/api/v1/cart/view/${userName}`,
         { 
           headers: {"Authorization" : `Bearer ${token}`}
         }
@@ -22,7 +22,7 @@ function ShoppingCart() {
       setCartId(cartResponse.data);
       console.log(cartResponse.data + "cart id");
       const mealResponse = await axios.get(
-        `http://localhost:8080/yellowrestaurant/api/v1/cart/mealsInCart/${cartResponse.data}`,
+        `http://localhost:8080/api/v1/cart/mealsInCart/${cartResponse.data}`,
         { 
           headers: {"Authorization" : `Bearer ${token}`}
         }

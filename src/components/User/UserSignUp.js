@@ -10,16 +10,16 @@ export default function UserSignUp() {
   const [show, setShow] = useState(false);
 
   const onSubmit = (data) => {
-    fetch(" http://localhost:8080/yellowrestaurant/api/v1/user", {
+    fetch(" http://localhost:8080/api/v1/user", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     }).then((response) => {
+      console.log(response);
       if (response.status === 200) {
         setToHome(true);
       } else if(response.status ===500){
         handleShow();
-
       }
     });
   };
@@ -42,7 +42,6 @@ export default function UserSignUp() {
         <form onSubmit={handleSubmit(onSubmit)}>
           <h5 style={{ color: "white" }}>Register account</h5>
           <div class="form-group">
-            {/* <label for="First Name">First Name</label> */}
             <input
               name="firstName"
               placeholder="First name"

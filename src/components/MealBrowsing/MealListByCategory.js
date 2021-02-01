@@ -25,7 +25,7 @@ function MealListByCategory({ name }) {
   useEffect(() => {
     async function getDataFavorites() {
       const responseFavorites = await axios.get(
-        `http://localhost:8080/yellowrestaurant/api/v1/user/${username}/favorites`,
+        `http://localhost:8080/api/v1/user/${username}/favorites`,
         {
           headers: { "Authorization" : `Bearer ${token}` }
         }
@@ -51,7 +51,7 @@ function MealListByCategory({ name }) {
 
     if (alreadyFave == false) {
       fetch(
-        `http://localhost:8080/yellowrestaurant/api/v1/user/${username}/favorites/${newFavoriteMeal.idMeal}`,
+        `http://localhost:8080/api/v1/user/${username}/favorites/${newFavoriteMeal.idMeal}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json",
@@ -64,7 +64,7 @@ function MealListByCategory({ name }) {
       });
     } else {
       fetch(
-        `http://localhost:8080/yellowrestaurant/api/v1/user/${username}/favorites/delete/${newFavoriteMeal.idMeal}`,
+        `http://localhost:8080/api/v1/user/${username}/favorites/delete/${newFavoriteMeal.idMeal}`,
         {
           method: "DELETE",
           headers: { 
@@ -128,7 +128,7 @@ function handleClick(mealToAddToCart) {
     ""
   );
   fetch(
-    `http://localhost:8080/yellowrestaurant/api/v1/cart/${username}/meal/${mealToAddToCart.strMeal}/tocart/${image}`,
+    `http://localhost:8080/api/v1/cart/${username}/meal/${mealToAddToCart.strMeal}/tocart/${image}`,
     {
       method: "POST",
       headers: {

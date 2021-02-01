@@ -50,7 +50,6 @@ function SearchResults({ name }) {
 }
 
 function handleClick(mealToAddToCart) {
-  // alert("Meal added to your shopping cart!");
   const username = window.sessionStorage.getItem("User");
   const token = window.sessionStorage.getItem("token");
   const image = mealToAddToCart.strMealThumb.replace(
@@ -58,7 +57,7 @@ function handleClick(mealToAddToCart) {
     ""
   );
   fetch(
-    `http://localhost:8080/yellowrestaurant/api/v1/cart/${username}/meal/${mealToAddToCart.strMeal}/tocart/${image}`,
+    `http://localhost:8080/api/v1/cart/${username}/meal/${mealToAddToCart.strMeal}/tocart/${image}`,
     {
       method: "POST",
       headers: {
